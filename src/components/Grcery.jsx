@@ -69,31 +69,37 @@ const Grcery = () => {
   };
 
   return (
-    <div>
-      <h1>Grocery Bud</h1>
-      <div>
-        <input
-          type="text"
-          placeholder="search"
-          value={grocery}
-          onChange={handleInput}
-        />
-        <button onClick={handleClick}>Add Item</button>
-        <ul>
-          {groceryItem.map((list, index) => (
-            <GroceryList
-              key={list.id}
-              id={list.id}
-              name={list.item}
-              status={list.isCompleted}
-              onDelete={() => handleDelete(index)}
-              toggleCompleted={toggleCompleted}
+    <section className="w-screen h-screen relative flex justify-center items-center">
+      <div className="p-1 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500">
+        <div className="flex flex-col gap-5 bg-gray-800 back rounded-md p-10">
+          <h1 className="font font-sans font-bold text-center">Grocery Bag</h1>
+          <div className="flex gap-2">
+            <input
+              className="pl-4 rounded-md"
+              type="text"
+              placeholder="search"
+              value={grocery}
+              onChange={handleInput}
             />
-          ))}
-        </ul>
-        <ToastContainer />
+            <button onClick={handleClick}>Add Item</button>
+          </div>{" "}
+          {/* Corrected closing tag */}
+          <ul className="w-full flex flex-col justify-center items-center">
+            {groceryItem.map((list, index) => (
+              <GroceryList
+                key={list.id}
+                id={list.id}
+                name={list.item}
+                status={list.isCompleted}
+                onDelete={() => handleDelete(index)}
+                toggleCompleted={() => toggleCompleted(list.id)}
+              />
+            ))}
+          </ul>
+          <ToastContainer />
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
